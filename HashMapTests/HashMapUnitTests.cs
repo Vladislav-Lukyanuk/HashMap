@@ -45,7 +45,7 @@ namespace HashMapUnitTests
             List<Int32> keys = GetRandomKeys(10);
             FillMapOfHouse(keys);
 
-            Assert.AreEqual(houseMap.Size(), keys.Count);
+            Assert.AreEqual(keys.Count, houseMap.Size());
             foreach (Int32 key in houseMap.Keys)
             {
                 Assert.IsTrue(keys.Contains(key));
@@ -58,7 +58,7 @@ namespace HashMapUnitTests
             List<House> houses = GetRandomHouses(10);
             FillMapOfHouse(houses);
 
-            Assert.AreEqual(houseMap.Size(), houses.Count);
+            Assert.AreEqual(houses.Count, houseMap.Size());
             foreach (House house in houseMap.Values)
             {
                 Assert.IsTrue(houses.Contains(house));
@@ -127,7 +127,7 @@ namespace HashMapUnitTests
             foreach (KeyValuePair<Int32, House> keyPair in mapToInsert)
             {
                 House house = houseMap.Remove(keyPair.Key);
-                Assert.AreEqual(house, mapToInsert.Get(keyPair.Key));
+                Assert.AreEqual(mapToInsert.Get(keyPair.Key), house);
             }
         }
 
@@ -188,14 +188,6 @@ namespace HashMapUnitTests
             return houseMap;
         }
 
-        private void FillMapOfHouse(Int32 size)
-        {
-            for (Int32 i = 0; i < size; i++)
-            {
-                houseMap.Put(GetRandomKey(), GetRandomHouse());
-            }
-        }
-
         private void FillMapOfHouse(List<Int32> keys)
         {
             for (Int32 i = 0; i < keys.Count; i++)
@@ -209,15 +201,6 @@ namespace HashMapUnitTests
             for (Int32 i = 0; i < houses.Count; i++)
             {
                 houseMap.Put(GetRandomKey(), houses[i]);
-            }
-        }
-
-        private void FillMapOfHouse(List<Int32> keys, List<House> houses)
-        {
-            Int32 length = Math.Min(keys.Count, houses.Count);
-            for (Int32 i = 0; i < length; i++)
-            {
-                houseMap.Put(keys[i], houses[i]);
             }
         }
 
